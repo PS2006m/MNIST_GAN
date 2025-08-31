@@ -28,10 +28,9 @@ def build_generator(latent_dim):
 
     model.add(layers.Conv2DTranspose(64, kernel_size=5, strides=2, padding='same', use_bias=False))
     model.add(layers.BatchNormalization())
-    model.add(layers.ReLU())                # 14x14x64
+    model.add(layers.ReLU())                
 
     model.add(layers.Conv2DTranspose(1, kernel_size=5, strides=2, padding='same', use_bias=False, activation='tanh'))
-    # 28x28x1 output in range [-1,1]
     return model
 
 def build_discriminator(img_shape):
@@ -45,7 +44,7 @@ def build_discriminator(img_shape):
     model.add(layers.Dropout(0.3))
 
     model.add(layers.Flatten())
-    model.add(layers.Dense(1))  # logits
+    model.add(layers.Dense(1)) 
     return model
 
 cross_entropy = tf.keras.losses.BinaryCrossentropy(from_logits=True)
